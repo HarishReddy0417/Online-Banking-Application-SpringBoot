@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Navbar Example</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar .profile {
+            float: right;
+        }
+
+        .view-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a th:href="@{/home}">Home</a>
+    <a th:href="@{/news}">News</a>
+    <a th:href="@{/contact}">Contact</a>
+    <a th:href="@{/about}">About</a>
+    <div class="profile">
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+    <a th:href="@{/view}" class="view-button">View</a>
+</div>
+<!-- Page content -->
+<div style="padding: 20px">
+    <h1>Welcome to Online Banking Application</h1>
+    <br>
+    <div>
+        <a th:href="@{/customers/add}" class="view-button">Click here to add Customer details</a>
+        <a th:href="@{/customers/list}" class="view-button">View Customer Details</a>
+        <a th:href="@{/accounts/list}" class="view-button">View Account Details</a>
+        <a th:href="@{/fund-transfer/form}" class="view-button">Make Payment</a>
+    </div>
+    
+</div>
+
+</body>
+</html>

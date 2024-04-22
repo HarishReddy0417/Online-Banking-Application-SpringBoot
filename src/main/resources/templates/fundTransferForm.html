@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fund Transfer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar .profile {
+            float: right;
+        }
+
+        .view-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            
+        }
+    </style>
+</head>
+<body>
+        
+<div class="navbar">
+    <a th:href="@{/home}">Home</a>
+    <div class="profile">
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+
+<!-- Page content -->
+<div style="padding: 20px">
+    <h1>Welcome to Online Banking Application</h1>
+    <br>
+    <h2>Fund Transfer</h2>
+
+
+<form action="#" th:action="@{/fund-transfer/transfer}" th:object="${transfer}" method="post">
+    <label for="fromAccountId">From Account:</label>
+    <select id="fromAccountId" name="fromAccountId">
+        <option th:each="account : ${accounts}" th:value="${account.id}" th:text="${account.accountNumber}"></option>
+    </select>
+    <br>
+
+    <label for="toAccountId">To Account:</label>
+    <select id="toAccountId" name="toAccountId">
+        <option th:each="account : ${accounts}" th:value="${account.id}" th:text="${account.accountNumber}"></option>
+    </select>
+    <br>
+
+    <label for="amount">Amount:</label>
+    <input type="text" id="amount" name="amount"><br>
+
+    <input type="submit" value="Transfer">
+</form>
+
+<!-- Display success message if redirected from transfer -->
+<div th:if="${param.success}">
+    <p>Transfer successful!</p>
+</div>
+
+<div th:if="${error}" style="color: red;">
+    <p th:text="${error}"></p>
+</div>
+
+</div>
+
+</body>
+</html>

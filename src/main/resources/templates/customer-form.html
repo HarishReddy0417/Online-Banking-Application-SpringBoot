@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Customer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar .profile {
+            float: right;
+        }
+
+        .view-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            
+        }
+    </style>
+</head>
+<body>
+    
+<div class="navbar">
+    <a th:href="@{/home}">Home</a>
+    <div class="profile">
+        <a th:href="@{/logout}">Logout</a>   
+    </div>
+</div>
+
+<!-- Page content -->
+<div style="padding: 20px">
+    <h1>Welcome to Online Banking Application</h1>
+    
+    <br>
+    <h2>Add Customer</h2>
+    <form action="#" th:action="@{/customers/add}" th:object="${customer}" method="post">
+
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" th:field="*{firstName}" required>
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span><br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" th:field="*{lastName}" required>
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span><br>
+
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" required>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span><br>
+
+        <input type="submit" value="Submit">
+        <p th:text="${error}" style="color: red"></p>
+    </form>
+    <div th:if="${customer.accounts.size() > 0}">
+        <p>Customer already has an account. <a th:href="@{/accounts/add}">Add Account</a></p>
+    </div>
+</div>
+</body>
+</html>
